@@ -1,2 +1,3 @@
-#Curso React
-Curso de aprendizaje de React.JS y Flux. Impartudo por Cory House en Pluralsight.
+Curso React
+------------------
+curso de aprendizaje de React.JS y Flux. Impartudo por Cory House en Pluralsight.
