@@ -1,0 +1,16 @@
+{
+  "name": "curso_react",
+  "version": "1.0.0",
+  "description": "Curso de iniciacion a React. Pluralsight",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonio Sánchez González",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-open": "^1.0.0"
+  }
+}
