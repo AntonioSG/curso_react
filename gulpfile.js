@@ -6,6 +6,7 @@ var open = require("gulp-open");
 var browserify = require("browserify");
 var reactify = require("reactify");
 var source = require("vinyl-source-stream");
+var concat = require("gulp-concat");
 
 var config = {
     port: 8005,
@@ -13,6 +14,10 @@ var config = {
     path: {
         html: "./src/*.html",
         js: "./src/**/*.js",
+        css:[
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/bootstrap/dist/css/bootstrap-theme.min.css"
+        ],
         dist: "./dist",
         mainJS: "./src/main.js"
     }
@@ -48,9 +53,15 @@ gulp.task("js", function () {
        .pipe(connect.reload());
 });
 
+gulp.task("css", function () {
+   gulp.src(config.path.css)
+       .pipe(concat("bundle.css"))
+       .pipe(gulp.dest(config.path.dist + "/css"))
+});
+
 gulp.task("watch", function () {
    gulp.watch(config.path.html, ["html"]);
    gulp.watch(config.path.js, ["js"]);
 });
 
-gulp.task("default", ["html", "js", "open", "watch"]);
+gulp.task("default", ["html", "js", "css", "open", "watch"]);
