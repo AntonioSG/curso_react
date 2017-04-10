@@ -10,7 +10,7 @@ var concat = require("gulp-concat");
 var lint = require("gulp-eslint");
 
 var config = {
-    port: 8006,
+    port: 8008,
     devBaseUrl: "http://localhost",
     path: {
         html: "./src/*.html",
