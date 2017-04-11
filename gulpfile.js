@@ -10,11 +10,12 @@ var concat = require("gulp-concat");
 var lint = require("gulp-eslint");
 
 var config = {
-    port: 8009,
+    port: 8010,
     devBaseUrl: "http://localhost",
     path: {
         html: "./src/*.html",
         js: "./src/**/*.js",
+        img: "./src/images/*.*",
         css:[
             "node_modules/bootstrap/dist/css/bootstrap.min.css",
             "node_modules/bootstrap/dist/css/bootstrap-theme.min.css"
@@ -60,6 +61,12 @@ gulp.task("css", function () {
        .pipe(gulp.dest(config.path.dist + "/css"))
 });
 
+gulp.task("img", function () {
+   gulp.src(config.path.img)
+       .pipe(gulp.dest(config.path.dist + "/images"))
+       .pipe(connect.reload());
+});
+
 gulp.task("lint", function () {
    return gulp.src(config.path.js)
        .pipe(lint({config: "eslint.config.json"}))
@@ -71,4 +78,4 @@ gulp.task("watch", function () {
    gulp.watch(config.path.js, ["js", "lint"]);
 });
 
-gulp.task("default", ["html", "js", "css", "lint", "open", "watch"]);
+gulp.task("default", ["html", "js", "css", "img", "lint", "open", "watch"]);
