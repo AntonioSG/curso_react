@@ -1,6 +1,6 @@
 "use strict";
 
-var authors = require("./AuthorData").author;
+var authors = require("./AuthorData").authors;
 var _ = require("lodash");
 
 var _generateID = function (author) {

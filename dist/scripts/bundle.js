@@ -34121,7 +34121,7 @@ module.exports = {
 },{}],160:[function(require,module,exports){
 "use strict";
 
-var authors = require("./AuthorData").author;
+var authors = require("./AuthorData").authors;
 var _ = require("lodash");
 
 var _generateID = function (author) {
@@ -34198,10 +34198,39 @@ var React = require('react');
 var AuthorApi = require("../../api/authorApi");
 
 var AuthorPage = React.createClass({displayName: "AuthorPage",
+    getInitialState: function () {
+      return {
+          authors: []
+      };
+    },
+
+   componentWillMount: function () {
+     this.setState({authors: AuthorApi.getAllAuthors() });
+   },
+
    render: function () {
+        var createAuthorRow = function(author) {
+            return (
+                React.createElement("tr", {key: author.id}, 
+                    React.createElement("td", null, React.createElement("a", {href: "#authors/" + author.id}, author.id)), 
+                    React.createElement("td", null, author.firstName, " ", author.lastName)
+                )
+            );
+       };
+
        return (
          React.createElement("div", null, 
-             React.createElement("h1", null, "Authors")
+             React.createElement("h1", null, "Authors"), 
+
+             React.createElement("table", {className: "table"}, 
+                 React.createElement("thead", null, 
+                    React.createElement("th", null, "ID"), 
+                    React.createElement("th", null, "Name")
+                 ), 
+                 React.createElement("tbody", null, 
+                    this.state.authors.map(createAuthorRow, this)
+                 )
+             )
          )
        );
    }
