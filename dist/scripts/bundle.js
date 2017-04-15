@@ -34202,7 +34202,6 @@ var AuthorList = React.createClass({displayName: "AuthorList",
     },
 
     render: function () {
-
         var createAuthorRow = function(author) {
             return (
                 React.createElement("tr", {key: author.id}, 
