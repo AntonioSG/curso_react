@@ -7,7 +7,7 @@ var AuthorForm = React.createClass({
    render: function () {
        return (
            <div>
-               <Input name="firstname"
+               <Input name="firstName"
                       label="Nombre"
                       placeholder="Nombre del autor"
                       value={this.props.author.firstName}
@@ -15,7 +15,7 @@ var AuthorForm = React.createClass({
 
                <br/>
 
-               <Input name="lastname"
+               <Input name="lastName"
                       label="Apellidos"
                       placeholder="Apellidos del autor"
                       value={this.props.author.lastName}
@@ -23,7 +23,8 @@ var AuthorForm = React.createClass({
 
                <br/>
 
-               <input type="submit" className="btn btn-info" value="Guardar"/>
+               <input type="submit" className="btn btn-info" value="Guardar"
+                    onClick={this.props.onSave}/>
            </div>
        );
    }
