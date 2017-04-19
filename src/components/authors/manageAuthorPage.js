@@ -5,7 +5,7 @@ var AuthorForm = require('./authorForm');
 
 var ManageAuthorPage = React.createClass({
     getInitialState: function() {
-        return{
+        return {
             author: { id: "", firstName: "", lastName: "" }
         };
     },
