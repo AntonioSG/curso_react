@@ -11,14 +11,24 @@ var ManageAuthorPage = React.createClass({
         Router.Navigation
     ],
 
+    statics: {
+        willTransitionFrom: function (transition, component) {
+            if(component.state.dirty && !confirm("¿Desea salir sin guardar?")){
+                transition.abort();
+            }
+        }
+    },
+
     getInitialState: function() {
         return {
             author: { id: "", firstName: "", lastName: "" },
-            error: {}
+            error: {},
+            dirty: false
         };
     },
 
    setAuthorState: function (event) {
+       this.setState({dirty: true});
        let field = event.target.name;
        let value = event.target.value;
        this.state.author[field] = value;
@@ -51,6 +61,7 @@ var ManageAuthorPage = React.createClass({
         }
 
         AuthorApi.saveAuthor(this.state.author);
+        this.setState({dirty: true});
         Toastr.success("Autor guardado con exito.");
         this.transitionTo("authors");
    },
